@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CareScale — Evaluaciones clínicas</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#ffffff" />
+  <!-- @tweakable Prevent flash: choose saved theme key and default behavior before CSS loads -->
+  <script>
+    /* @tweakable LocalStorage key used to persist theme ('dark'|'light') */
+    (function () {
+      try {
+        const saved = localStorage.getItem('carescale-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <div id="app" class="app-root" role="application" aria-label="CareScale — evaluador de escalas clínicas"></div>
+
+  <template id="card-template">
+    <article class="card" tabindex="0">
+      <h3 class="card-title"></h3>
+      <p class="card-desc"></p>
+      <div class="card-actions">
+        <button class="btn primary evaluate-btn">Evaluar ahora</button>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="scales/definitions.js"></script>
+  <script type="module" src="utils.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
